@@ -1,6 +1,6 @@
 <?php include("db.php");?>
 <?php include("includes/header.php") ?>
-<!-- <?php session_unset(); ?>  -->
+
 
 <div class="container p-4">
 
@@ -46,6 +46,9 @@
                         <input required type="text" name="date" class="form-control" placeholder="Due date" autofocus>
                     </div>
                     <input style="margin-top:5%" type="submit" class="btn btn-success btn-block" name="save_task" value="Save task">
+                    <?php if(isset($_SESSION['master']) && $_SESSION['master'] == 'Yes') { ?>
+                        <a style="margin-top:5%" href="tasks/consult.php" type="button" class="btn btn-warning btn-block" name="consult_task">Consult</a>
+                    <?php } ?>  
                 </form>
             </div>
         </div>

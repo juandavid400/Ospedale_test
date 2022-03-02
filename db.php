@@ -20,6 +20,13 @@ try {
     die("Conecction fail: ".$e->getMessage());
 }
 
+$connTableUsers = mysqli_connect(
+    'localhost',
+    'root',
+    '',
+    'php_login_database'
+);
+
 // Check is connected
 // if (isset($conn)){
 //     echo 'DB is connect';
