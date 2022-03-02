@@ -7,7 +7,7 @@
         $results = $records->fetch(PDO::FETCH_ASSOC);
 
         if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
-            $_SESSION['usser_id'] =  $results['email'];
+            $_SESSION['usser_id'] =  $_POST['email'];
             $_SESSION['message'] = "Login successful";
             $_SESSION['message_type'] = "success";
             header("Location: ../index.php");
@@ -33,15 +33,18 @@
             <?php session_unset(); ?> 
 
             <div class="card card-body">
-                <form action="" method="POST">
+                <form action="../save_task.php" method="POST">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Email</span>
+                        <input autofocus type="text" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                    </div>
 
-                    <div class="form-group">
-                        <input type="text" name="email" class="form-control" placeholder="Enter your email" autofocus>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Password</span>
+                        <input type="text" name="password" class="form-control" placeholder="password" aria-label="password" aria-describedby="basic-addon1">
                     </div>
-                    <div class="form-group">
-                        <input type="password" name="password" rows="2" class="form-control" placeholder="Enter your password">
-                    </div>
-                    <input type="submit" class="btn btn-success btn-block" value="Login">
+
+                    <input style="margin-top:5%;" name="login_button" type="submit" class="btn btn-success btn-block" value="Login">
                 </form>
                 <div class="column" style="margin-top:5%;text-align:center;">
                     <a href="register.php">Register</a>
