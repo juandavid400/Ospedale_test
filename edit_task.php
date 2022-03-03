@@ -57,7 +57,7 @@
                     <div class="form-group">
                         <label>Finished:</label>
                         <select name="finish" class="form-select form-select-lg mb-3" >
-                            <option required value="<?php echo $finish;?>" disabled selected><?php echo $finish;?></option>
+                            <option required value="<?php echo $finish;?>" selected><?php echo $finish;?></option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
