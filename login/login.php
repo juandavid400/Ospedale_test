@@ -17,12 +17,12 @@
                 <form action="../save_task.php" method="POST">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Email</span>
-                        <input autofocus type="text" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                        <input required autofocus type="text" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">Password</span>
-                        <input type="password" name="password" class="form-control" placeholder="password" aria-label="password" aria-describedby="basic-addon1">
+                        <input required type="password" name="password" class="form-control" placeholder="password" aria-label="password" aria-describedby="basic-addon1">
                     </div>
 
                     <input style="margin-top:5%;" name="login_button" type="submit" class="btn btn-success btn-block" value="Login">

@@ -27,7 +27,12 @@
 
         $_SESSION['message'] = "Task Update Succesfully";
         $_SESSION['message_type'] = "info";
-        header("Location: tasks/consult.php");
+        if ($_SESSION['master'] == 'No') {
+            header("Location: index.php");
+        } else {
+            header("Location: tasks/consult.php");
+        }
+        
     }
 
 ?>
@@ -41,18 +46,18 @@
                 <form action="edit_task.php?id=<?php echo $_GET['id']; ?>" method = "POST">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Title</span>
-                        <input required autofocus type="text" value="<?php echo $title;?>" name="title" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1">
+                        <input required required autofocus type="text" value="<?php echo $title;?>" name="title" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">Description</span>
-                        <input required type="text" value="<?php echo $description;?>" name="description" class="form-control" placeholder="Description" aria-label="Description" aria-describedby="basic-addon1">
+                        <input required required type="text" value="<?php echo $description;?>" name="description" class="form-control" placeholder="Description" aria-label="Description" aria-describedby="basic-addon1">
                     </div>
 
                     <div class="form-group">
                         <label>Finished:</label>
                         <select name="finish" class="form-select form-select-lg mb-3" >
-                            <option value="<?php echo $finish;?>" selected><?php echo $finish;?></option>
+                            <option required value="<?php echo $finish;?>" disabled selected><?php echo $finish;?></option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>

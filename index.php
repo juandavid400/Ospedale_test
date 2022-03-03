@@ -1,5 +1,14 @@
 <?php include("db.php");?>
 <?php include("includes/header.php") ?>
+<?php 
+    if (isset($_SESSION['mail'])){
+        $name =  $_SESSION['mail'];
+    }
+    
+    if (isset($_SESSION['master'])){
+        $master =  $_SESSION['master'];
+    }
+?>
 
 
 <div class="container p-4">
@@ -29,7 +38,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input style="display:none;" type="text" name="email" value="<?=$_SESSION['mail']?>">
+                        <input style="display:none;" type="text" name="email" value="<?=$name?>">
                     </div>
 
                     <div class="form-group mb-3">
@@ -46,9 +55,10 @@
                         <input required type="text" name="date" class="form-control" placeholder="Due date" autofocus>
                     </div>
                     <input style="margin-top:5%" type="submit" class="btn btn-success btn-block" name="save_task" value="Save task">
-                    <?php if(isset($_SESSION['master']) && $_SESSION['master'] == 'Yes') { ?>
-                        <a style="margin-top:5%" href="tasks/consult.php" type="button" class="btn btn-warning btn-block" name="consult_task">Consult</a>
-                    <?php } ?>  
+                    <?php if(isset($_SESSION['master']) && $master == 'Yes') { ?>
+                        <a style="margin-top:5%" href="tasks/consult.php" type="button" class="btn btn-warning btn-block" name="consult_task">Consult tasks</a>
+                    <?php } ?>
+                    <a style="margin-top:5%" href="login/login.php" type="button" class="btn btn-danger btn-block" name="consult_task">Log out</a>  
                 </form>
             </div>
         </div>
@@ -61,7 +71,9 @@
                         <th>Description</th>
                         <th>Status</th>
                         <th>Due date</th>
-                        <!-- <th>Actions</th> -->
+                        <?php if ($master == 'No') { ?>
+                        <th>Actions</th>
+                        <?php } ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,24 +82,25 @@
                     $query =  "SELECT * FROM task";
                     $result_tasks = mysqli_query($conn, $query);
 
-                    while ($row = mysqli_fetch_array($result_tasks)) { ?>
+                    while ($row = mysqli_fetch_array($result_tasks)) {?>
                         <tr>
                             <td><?php echo $row['name']?></td>
                             <td><?php echo $row['title']?></td>
                             <td><?php echo $row['description']?></td>
                             <td><?php echo $row['finish']?></td>
                             <td><?php echo $row['due_date']?></td>
-                            <!-- <td>
+                            <?php if ($name == $row['name'] && $master == 'No') { ?>                            
+                            <td>
                                 <a href="edit_task.php?id=<?php echo $row['id']?>" class="btn btn-warning">
                                     <i class="fas fa-marker"></i>
                                 </a>
                                 <a href="delete_task.php?id=<?php echo $row['id']?>" class="btn btn-danger">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
-                            </td> -->
+                            </td>
                         </tr>
                     
-                    <?php } ?>
+                    <?php }} ?>
                 </tbody>
             </table>
         </div>

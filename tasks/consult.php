@@ -2,7 +2,7 @@
 <?php include("../includes/header.php") ?>
 
 <div class="container p-4">
-
+<a style="margin-top:5%" href="../index.php" type="button" class="btn btn-dark btn-block" name="consult_task">Back to home</a>
     <div class="row">
     <div class="col-md-12">
             <?php if(isset($_SESSION['message'])) { ?>
@@ -107,25 +107,7 @@
                                 </a>
                             </td>
                         </tr>
-                    <?php }?> 
-                          <tr>
-                            <td><?php echo $row['created_at']?></td>
-                            <td><?php echo $row['name']?></td>
-                            <td><?php echo $row['title']?></td>
-                            <td><?php echo $row['description']?></td>
-                            <td><?php echo $row['finish']?></td>
-                            <td><?php echo $row['due_date']?></td>
-                            
-                            <td>
-                                <a href="../edit_task.php?id=<?php echo $row['id']?>" class="btn btn-warning">
-                                    <i class="fas fa-marker"></i>
-                                </a>
-                                <a href="../delete_task.php?id=<?php echo $row['id']?>" class="btn btn-danger">
-                                    <i class="far fa-trash-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                     <?php  }elseif ($filter == $row['name']) {
+                     <?php } }elseif ($filter == $row['name']) {
                                 if ($finishFilter == 'all') {
                           ?>
                         <tr>
